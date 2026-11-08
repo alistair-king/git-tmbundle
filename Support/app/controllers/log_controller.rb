@@ -1,7 +1,5 @@
 # encoding: utf-8
 require ENV['TM_SUPPORT_PATH'] + '/lib/ui.rb'
-require "#{ENV["TM_SUPPORT_PATH"]}/lib/osx/plist"
-require "#{ENV["TM_SUPPORT_PATH"]}/lib/progress"
 require LIB_ROOT + '/date_helpers.rb'
 location = ENV["TM_BUNDLE_SUPPORT"]
 $nib = "#{location}/nibs/RevisionSelector.nib"

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Remove Worktree…</string>
+	<key>uuid</key>
+	<string>C43A4500-3A0D-4BF7-8193-90E8EEC3CAFD</string>
+	<key>command</key>
+	<string>#!/usr/bin/ruby
+require File.join(ENV.fetch("TM_BUNDLE_SUPPORT"), "worktrees")
+GitWorktrees.main(:remove)
+</string>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>input</key>
+	<string>none</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>toolTip</string>
+	<key>version</key>
+	<integer>2</integer>
+	<key>semanticClass</key>
+	<string>action.scm.worktrees</string>
+	<key>requiredCommands</key>
+	<array>
+		<dict>
+			<key>command</key>
+			<string>git</string>
+			<key>variable</key>
+			<string>TM_GIT</string>
+			<key>locations</key>
+			<array>
+				<string>/opt/homebrew/bin/git</string>
+				<string>/usr/local/bin/git</string>
+				<string>/usr/bin/git</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

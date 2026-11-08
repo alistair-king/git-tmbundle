@@ -42,6 +42,7 @@
 			<string>1C12DE42-78A9-4DCA-BB55-2B8E6328C72D</string>
 			<string>D0DF4B19-F311-48CC-BF68-F8B33CD051D3</string>
 			<string>------------------------------------</string>
+			<string>990F25D8-E9E8-49D7-B4AA-E2F605C257A9</string>
 			<string>5A08145A-069F-4196-8F32-07C05EF4DCB6</string>
 			<string>------------------------------------</string>
 			<string>739BCC37-16DE-40BE-83C1-0AE8FDC45036</string>
@@ -82,6 +83,18 @@
 				</array>
 				<key>name</key>
 				<string>Stash</string>
+			</dict>
+			<key>990F25D8-E9E8-49D7-B4AA-E2F605C257A9</key>
+			<dict>
+				<key>name</key>
+				<string>Worktrees</string>
+				<key>items</key>
+				<array>
+					<string>605732EA-D97E-42BA-8611-F7116DF73E63</string>
+					<string>449797D6-9604-40D1-8464-1FC755786921</string>
+					<string>72A0E86C-A380-42F2-928D-E7946BD6A38B</string>
+					<string>C43A4500-3A0D-4BF7-8193-90E8EEC3CAFD</string>
+				</array>
 			</dict>
 		</dict>
 	</dict>
@@ -132,6 +145,10 @@
 		<string>0DBC221A-B726-4367-A5E1-04AB999F8CC2</string>
 		<string>E0901B2E-8953-4A2F-A872-8DBE1A047370</string>
 		<string>683BF855-9BC9-47A6-89DD-7C2192E62FD7</string>
+		<string>605732EA-D97E-42BA-8611-F7116DF73E63</string>
+		<string>449797D6-9604-40D1-8464-1FC755786921</string>
+		<string>72A0E86C-A380-42F2-928D-E7946BD6A38B</string>
+		<string>C43A4500-3A0D-4BF7-8193-90E8EEC3CAFD</string>
 	</array>
 	<key>uuid</key>
 	<string>EADD4718-EE11-4ABF-A7E6-13351FB3799D</string>

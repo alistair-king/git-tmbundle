@@ -1,17 +1,8 @@
-# This fork is no longer maintained
-
-Unfortunately I am unable to devote any significant amount of time to
-supporting this TextMate bundle.
-
-I can merge any pull requests that come through until someone hopefully
-volunteers to take over maintenance.
-
-If you would like to help keep this bundle alive please contact me
-through Github and we can discuss transferring ownership over to you.
-
----
-
 # The Git Textmate Bundle.
+
+## Updates
+
+ - Adding support for git worktreees
 
 ## Installation
 
@@ -87,3 +78,9 @@ of the following fine gentlemen:
 Please feel free to send a pull request if you've added any
 functionality to this bundle that you think the rest of the git-loving,
 TextMate-using world would appreciate!
+
+## Git worktrees
+
+The **Git → Worktrees** submenu can list, open, create, and remove linked
+checkouts. See [Worktrees](docs/worktrees.md) for usage, safeguards, migration,
+and integration-test instructions.

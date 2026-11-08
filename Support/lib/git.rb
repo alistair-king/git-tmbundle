@@ -5,21 +5,21 @@ module SCM
   class Git
     attr_reader :parent
     GIT_SCM_STATUS_MAP = {
-      'A' => {:short => 'A', :long => 'added',        :foreground => '#008000', :background => '#bbffb3'},
-      '+' => {:short => '+', :long => 'added',        :foreground => '#008000', :background => '#bbffb3'},
-      'D' => {:short => 'D', :long => 'deleted',      :foreground => '#FF0000', :background => '#f59696'},
-      'G' => {:short => 'G', :long => 'merged',       :foreground => '#eb6400', :background => '#f7e1ad'},
-      'U' => {:short => 'U', :long => 'updated',      :foreground => '#eb6400', :background => '#f7e1ad'},
-      'M' => {:short => 'M', :long => 'modified',     :foreground => '#eb6400', :background => '#f7e1ad'},
+      'A' => {:short => 'A', :long => 'added',        :foreground => '#476650', :background => '#eaf3ec'},
+      '+' => {:short => '+', :long => 'added',        :foreground => '#476650', :background => '#eaf3ec'},
+      'D' => {:short => 'D', :long => 'deleted',      :foreground => '#854d4d', :background => '#f8eaea'},
+      'G' => {:short => 'G', :long => 'merged',       :foreground => '#79643d', :background => '#f5f0e3'},
+      'U' => {:short => 'U', :long => 'updated',      :foreground => '#79643d', :background => '#f5f0e3'},
+      'M' => {:short => 'M', :long => 'modified',     :foreground => '#79643d', :background => '#f5f0e3'},
       'L' => {:short => 'L', :long => 'locked',       :foreground => nil      , :background => nil      },
       'B' => {:short => 'B', :long => 'broken',       :foreground => nil      , :background => nil      },
-      'R' => {:short => 'R', :long => 'renamed',      :foreground => '#FF0000', :background => '#f59696'},
-      'C' => {:short => 'C', :long => 'conflict',     :foreground => '#008080', :background => '#A3CED0'},
-      '!' => {:short => '!', :long => 'missing',      :foreground => '#008080', :background => '#A3CED0'},
-      '"' => {:short => '"', :long => 'typeconflict', :foreground => '#008080', :background => '#A3CED0'},
-      '?' => {:short => '?', :long => 'unknown',      :foreground => '#008080', :background => '#A3CED0'},
-      'I' => {:short => 'I', :long => 'ignored',      :foreground => '#800080', :background => '#edaef5'},
-      'X' => {:short => 'X', :long => 'external',     :foreground => '#800080', :background => '#edaef5'},
+      'R' => {:short => 'R', :long => 'renamed',      :foreground => '#854d4d', :background => '#f8eaea'},
+      'C' => {:short => 'C', :long => 'conflict',     :foreground => '#486776', :background => '#e8f0f4'},
+      '!' => {:short => '!', :long => 'missing',      :foreground => '#486776', :background => '#e8f0f4'},
+      '"' => {:short => '"', :long => 'typeconflict', :foreground => '#486776', :background => '#e8f0f4'},
+      '?' => {:short => '?', :long => 'unknown',      :foreground => '#486776', :background => '#e8f0f4'},
+      'I' => {:short => 'I', :long => 'ignored',      :foreground => '#6e587d', :background => '#f0ebf4'},
+      'X' => {:short => 'X', :long => 'external',     :foreground => '#6e587d', :background => '#f0ebf4'},
     }
     
     DEFAULT_DIFF_LIMIT = 3000
@@ -295,7 +295,7 @@ module SCM
       "#{filename.sub(extname, '')}-rev-#{rev}#{extname}"
     end
     
-    %w[config branch stash svn remote submodule].each do |command|
+    %w[config branch stash remote submodule].each do |command|
       class_eval <<-EOF
       def #{command}
         @#{command} ||= SCM::Git::#{command.classify}.new(self)

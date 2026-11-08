@@ -141,10 +141,10 @@ module GitWorktrees
         <!DOCTYPE html>
         <html><head><meta charset="utf-8"><title>Git Worktrees</title>
         <style>
-          :root { color-scheme: light dark; }
-          body { font: 13px -apple-system, sans-serif; padding: 16px; }
+          #{File.read(File.join(__dir__, "resource", "style.css"))}
+          body { padding: 16px; }
           table { border-collapse: collapse; width: 100%; }
-          th, td { text-align: left; vertical-align: top; padding: 8px; border-bottom: 1px solid #8886; }
+          th, td { text-align: left; vertical-align: top; padding: 8px; border-bottom: 1px solid #dfe3e8; }
           td { white-space: pre-wrap; overflow-wrap: anywhere; }
         </style></head><body><h1>Git Worktrees</h1>
         <table><thead><tr><th>Branch</th><th>Directory</th><th>Commit</th><th>Status</th></tr></thead>

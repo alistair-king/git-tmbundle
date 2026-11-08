@@ -16,8 +16,7 @@ git clone git://github.com/jcf/git-tmbundle.git Git.tmbundle
   TM_GIT variable to point to your installation of git (ie
   `/usr/local/bin/git`)
 - Many shortcuts are available from the Git-shortcut (Ctrl-Shift-G).
-  Subversion commands are Command-Option-g. Less frequent commands are
-  accessed via the menu.
+  Less frequent commands are accessed via the menu.
 - Update your bundle by running the "Update Git Bundle" command.
 
 ## Theme notes:

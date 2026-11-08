@@ -24,15 +24,15 @@ input, textarea, select { font-family:inherit;font-size:inherit;font-weight:inhe
 
 body {
 	font-size: 13px;
-	line-height: 1.461em;
+	line-height: 1.6;
   background: #fff;
-  color: #000;
-  font-family: Georgia, Times, "Times new Roman", serif;
+  color: #343b43;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 8px;
   padding: 0;
 }
 h1, h2, h3, h4, h5, h6 {
-  color: #09460f;
+  color: #414a55;
   font-weight:  normal;
 }
 h1 {
@@ -66,7 +66,7 @@ p, ul, blockquote, pre, td, th, label {
 	margin-bottom: 1.461em;
 }
 p, ul, blockquote, td, th, label {
-	font-family: "Bitstream Vera Serif", Georgia, Times, "Times new Roman", serif;
+	font-family: inherit;
 }
 
 p.small {
@@ -85,7 +85,7 @@ code, pre, tt {
 
 a {
 /*  color: #630;*/
-  color: #811E00;
+  color: #4c6785;
   text-decoration: none;
 }
 a:hover {
@@ -817,21 +817,17 @@ iframe.output {
   width: 100%;
 }
 
-/* Git log: keep prose readable and reserve monospace for source diffs. */
+/* Shared window styling: sans-serif prose and muted colours. */
 .git-log {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  line-height: 1.6;
-  color: #343b43;
   padding: 12px 10px;
 }
 
-.git-log p, .git-log ul, .git-log blockquote,
-.git-log td, .git-log th, .git-log label {
+p, ul, blockquote,
+td, th, label {
   font-family: inherit;
 }
 
-.git-log h2 {
+h2 {
   color: #414a55;
   font-size: 20px;
   font-weight: 500;
@@ -839,11 +835,11 @@ iframe.output {
   margin-bottom: 20px;
 }
 
-.git-log .log-entry {
+.log-entry {
   margin-bottom: 18px;
 }
 
-.git-log .infobox {
+.infobox {
   background: #f3f5f7;
   border: 1px solid #dfe3e8;
   border-radius: 5px;
@@ -851,16 +847,16 @@ iframe.output {
   color: #626c78;
 }
 
-.git-log strong {
+strong {
   color: #414a55;
   font-weight: 600;
 }
 
-.git-log a {
+a {
   color: #4c6785;
 }
 
-.git-log .expand_link {
+.expand_link {
   border: 1px solid #cbd2da;
   border-radius: 3px;
   background: #fff;
@@ -872,52 +868,111 @@ iframe.output {
   margin-right: 10px;
 }
 
-.git-log .expand_link:hover, .git-log .expand_link:focus {
+.expand_link:hover, .expand_link:focus {
   background: #e8edf2;
   border-color: #8c9daf;
   text-decoration: none;
 }
 
-.git-log .log-author {
+.log-author {
   float: left;
 }
 
-.git-log .log-date {
+.log-date {
   float: right;
   color: #626c78;
   font-size: 12px;
 }
 
-.git-log abbr {
+abbr {
   border-bottom: 0;
 }
 
-.git-log .log-message {
+.log-message {
   padding: 10px 12px 0;
   overflow-wrap: break-word;
 }
 
-.git-log code, .git-log pre, .git-log tt,
-.git-log table.codediff, .git-log td.code {
+code, pre, tt,
+table.codediff, table tr td.code {
   font-family: Menlo, Monaco, "Courier New", monospace;
   line-height: 1.5;
 }
 
-.git-log table.codediff {
+table.codediff {
   border-color: #dfe3e8;
 }
 
-.git-log table.codediff thead,
-.git-log table.codediff thead .line-numbers,
-.git-log table.codediff .cut-line {
+table.codediff thead,
+table.codediff thead .line-numbers,
+table.codediff .cut-line {
   background: #edf0f4;
   color: #626c78;
 }
 
-.git-log table.codediff td.del {
+table.codediff td.del {
   background: #f8eaea;
 }
 
-.git-log table.codediff td.ins {
+table.codediff td.ins {
   background: #eaf3ec;
+}
+
+/* Keep annotation metadata sans-serif even inside the source-code wrapper. */
+table.codediff .line-numbers {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #f3f5f7;
+  color: #626c78;
+  border-color: #dfe3e8;
+  padding: 3px 7px;
+}
+
+table.codediff td.selected {
+  border: 0 !important;
+  box-shadow: inset 3px 0 #8096af;
+  background: #e7edf4;
+}
+
+table.sidebyside tbody.mod td { background: #f5f0e3; }
+table.sidebyside tbody.mod td ins,
+table.sidebyside tbody.mod td del { background: #ece2c8; }
+table.sidebyside td.del del { background: #efcece; }
+table.sidebyside td.ins ins { background: #cee4d3; }
+
+table.listing thead th { border-color: #dfe3e8; color: #414a55; }
+table.listing tr.odd { background: #f3f5f7; }
+input, textarea, select, button { font-family: inherit; }
+input.text, textarea, select {
+  border-color: #cbd2da;
+  border-radius: 4px;
+  background: #fff;
+  color: #343b43;
+  padding: 4px 6px;
+}
+input:focus, textarea:focus, select:focus, button:focus, a:focus-visible {
+  outline: 2px solid #8096af;
+  outline-offset: 2px;
+}
+.flash_message.notice { color: #476650; background: #eaf3ec; border-color: #bfd4c4; }
+.flash_message.error, .errorExplanation {
+  color: #854d4d; background: #f8eaea; border-color: #dfbebe;
+}
+
+.annotation-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 8px 12px 0;
+  background: #f3f5f7;
+  color: #414a55;
+  border-bottom: 1px solid #dfe3e8;
+}
+.annotation-toolbar .annotation-commands { float: right; margin-left: 16px; color: #626c78; }
+.annotation-toolbar select { box-sizing: border-box; }
+.annotation-content { margin-top: 90px; }
+@media (max-width: 600px) {
+  .annotation-toolbar .annotation-commands { float: none; margin-left: 0; }
+  .annotation-content { margin-top: 120px; }
 }

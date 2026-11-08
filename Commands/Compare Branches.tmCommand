@@ -8,7 +8,7 @@
 	<string>#!/usr/bin/env ruby
 
 require ENV['TM_BUNDLE_SUPPORT'] + '/environment.rb'
-require ENV['TM_SUPPORT_PATH'] + '/lib/osx/plist'
+require ENV['TM_SUPPORT_PATH'] + '/private/plist'
 
 git = Git.new
 path = File.expand_path('..', git.git_dir(git.paths.first))
@@ -17,7 +17,7 @@ branches   = git.branch.list(:all)
 parameters = { "branches" =&gt; branches.map { |e| { "name" =&gt; e[:name] } } }
 
 token = open('|"$DIALOG" -a CompareBranches', 'r+') { |io| io &lt;&lt; parameters.to_plist; io.close_write; io.read.chomp }
-res   = open('|"$DIALOG" -w' + token)               { |io| OSX::PropertyList.load(io) }
+res   = open('|"$DIALOG" -w' + token)               { |io| Plist.parse_xml(io.read) }
         open('|"$DIALOG" -x' + token)               { |io| }
 
 if res &amp;&amp; res['returnArgument']

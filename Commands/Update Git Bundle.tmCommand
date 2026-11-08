@@ -18,6 +18,7 @@ puts &lt;&lt;-EOF
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Update Git Bundle&lt;/title&gt;
+  &lt;style&gt;#{File.read(File.join(ENV['TM_BUNDLE_SUPPORT'], 'resource/style.css'))}&lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 EOF

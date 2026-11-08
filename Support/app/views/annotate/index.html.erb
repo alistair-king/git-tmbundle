@@ -5,7 +5,7 @@
   <script type='text/javascript'>
     function show_annotation(revision)
     {
-      $('content').update( dispatch({controller: 'annotate', action: "update", revision: revision}) );
+      $('content').update( dispatch({controller: 'annotate', action: "update", revision: revision, file_path: "<%=e_js @file_path %>"}) );
     }
   
     function keypress_listener(e) 
@@ -42,11 +42,11 @@
           dispatch({controller: 'log', action: 'create_branch_from_revision', revision: $F('rev') })
           break;
         case 111: // o
-          dispatch({controller: 'log', action: 'open_revision', file_path: "<%=e_js ENV['TM_FILEPATH'] %>", revision: $F('rev') })
+          dispatch({controller: 'log', action: 'open_revision', file_path: "<%=e_js @file_path %>", revision: $F('rev') })
           // 
           break;
         case 116: // t
-          dispatch({controller: 'log', action: 'create_tag_from_revision', file_path: "<%=e_js ENV['TM_FILEPATH'] %>", revision: $F('rev') })
+          dispatch({controller: 'log', action: 'create_tag_from_revision', file_path: "<%=e_js @file_path %>", revision: $F('rev') })
           // 
           break;
       }

@@ -1,3 +1,41 @@
+/* Let WebKit theme native controls and follow macOS appearance changes.
+   Light colours remain inline fallbacks for older HTML output renderers. */
+:root {
+  color-scheme: light dark;
+  supported-color-schemes: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --git-background: #1e1f22;
+    --git-text: #dce0e5;
+    --git-heading: #edf0f4;
+    --git-muted: #abb4c0;
+    --git-link: #9cbee6;
+    --git-surface: #292c31;
+    --git-surface-raised: #343940;
+    --git-border: #454b54;
+    --git-border-strong: #697583;
+    --git-focus: #9cbee6;
+    --git-selected: #33465c;
+    --git-added-background: #243c2e;
+    --git-added-text: #a3d9b0;
+    --git-added-border: #486950;
+    --git-added-emphasis: #355a40;
+    --git-deleted-background: #442b2e;
+    --git-deleted-text: #efb0b0;
+    --git-deleted-border: #785052;
+    --git-deleted-emphasis: #694045;
+    --git-modified-background: #403921;
+    --git-modified-text: #e4cb92;
+    --git-modified-emphasis: #60512a;
+    --git-conflict-background: #283c46;
+    --git-conflict-text: #a1ccdf;
+    --git-ignored-background: #3a3045;
+    --git-ignored-text: #ccb4e3;
+  }
+}
+
 /* reset */
 /*
 Copyright (c) 2007, Yahoo! Inc. All rights reserved.
@@ -5,7 +43,7 @@ Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
 version: 2.3.1
 */
-body { color:#000;background:#FFF; }
+body { color:var(--git-text, #000);background:var(--git-background, #FFF); }
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,
  input,textarea,p,blockquote,th,td { margin:0;padding:0; } 
 table { border-collapse:collapse;border-spacing:0; }
@@ -25,14 +63,14 @@ input, textarea, select { font-family:inherit;font-size:inherit;font-weight:inhe
 body {
 	font-size: 13px;
 	line-height: 1.6;
-  background: #fff;
-  color: #343b43;
+  background: var(--git-background, #fff);
+  color: var(--git-text, #343b43);
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 8px;
   padding: 0;
 }
 h1, h2, h3, h4, h5, h6 {
-  color: #414a55;
+  color: var(--git-heading, #414a55);
   font-weight:  normal;
 }
 h1 {
@@ -85,7 +123,7 @@ code, pre, tt {
 
 a {
 /*  color: #630;*/
-  color: #4c6785;
+  color: var(--git-link, #4c6785);
   text-decoration: none;
 }
 a:hover {
@@ -111,7 +149,7 @@ ul li h1, ul li h2, ul li h3, ul li h4 {
 }
 
 abbr {
-  border-bottom: 1px dotted #333;
+  border-bottom: 1px dotted var(--git-border, #333);
 }
 /* boxes */
 
@@ -134,7 +172,7 @@ abbr {
 }
 
 #container #logo h1   { line-height: 100%; }
-#container #logo h1 a { color: #666; }
+#container #logo h1 a { color: var(--git-muted, #666); }
 
 .login-logout {
   float: right;
@@ -142,7 +180,7 @@ abbr {
 
 #container #menu {
   height: 21px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--git-border, #333);
 }
 
 #container #main {
@@ -166,7 +204,7 @@ abbr {
   min-height: 300px;
   width: 150px;
   float:right;
-  border-left: 1px dotted #333;
+  border-left: 1px dotted var(--git-border, #333);
 }
 
 #sidebar ul.links {
@@ -174,22 +212,22 @@ abbr {
   padding:0;
 }
 #sidebar ul.links li {
-  border-bottom: 1px dotted #888;
+  border-bottom: 1px dotted var(--git-border, #888);
 }
 #sidebar ul.links li a {
   display:block;
   padding: 5px 5px 5px 10px; 
 }
 #sidebar ul.links li a:hover {
-  color: #fff;
-  background: #630;
+  color: var(--git-background, #fff);
+  background: var(--git-link, #630);
   text-decoration: none;
 }
 
 #container #footer {
   padding: 10px 30px 0 10px;
   font-size: 11px;
-  color: #666;
+  color: var(--git-muted, #666);
   text-align: center;
   clear:both;
 }
@@ -202,20 +240,20 @@ abbr {
   clear: both;
   padding: 5px 5px 5px 20px;
   margin-bottom: 20px;
-  border-top:1px solid #ccc;
-  border-bottom:1px solid #ccc;
+  border-top:1px solid var(--git-border, #ccc);
+  border-bottom:1px solid var(--git-border, #ccc);
 }
 .flash_message p { margin: 0; }
 .flash_message.notice {
-  color: #588e03;
-  background: #e9fad9;
-  border-color: #588e03; 
+  color: var(--git-added-text, #588e03);
+  background: var(--git-added-background, #e9fad9);
+  border-color: var(--git-border, #588e03);
 }
 
 .flash_message.error {
-  color: #c30000;
-  background: #f2dcdc;
-  border-color: #c30000;
+  color: var(--git-deleted-text, #c30000);
+  background: var(--git-deleted-background, #f2dcdc);
+  border-color: var(--git-border, #c30000);
 }
 
 /* menu */
@@ -237,15 +275,15 @@ abbr {
 
 #menu ul li a:hover {
   text-decoration: none;
-  border-bottom: 4px solid #630;
+  border-bottom: 4px solid var(--git-border, #630);
 }
 
 /* submenu */
 #submenu {
   margin-bottom: 1.5em;
   margin-top: 2px;
-  border-top: 1px dotted #666;
-  border-bottom: 1px solid #ccc;
+  border-top: 1px dotted var(--git-border, #666);
+  border-bottom: 1px solid var(--git-border, #ccc);
   font-size: 90%;
   min-height: 2px;
 }
@@ -266,7 +304,7 @@ abbr {
 
 #submenu ul li a:hover {
   text-decoration: none;
-  border-bottom: 3px solid #630;
+  border-bottom: 3px solid var(--git-border, #630);
 }
 
 /* Forms */
@@ -276,22 +314,22 @@ textarea {
 }
 
 fieldset { 
-  padding: 3px; 
-  margin: 0 0 10px 0; 
+  padding: 3px;
+  margin: 0 0 10px 0;
   width: 100%;
 }
 
 legend { 
-  font-weight: bold; 
+  font-weight: bold;
   font-size:12px; 
 }
 
 label { 
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 .required {
-  color: #aaa;
+  color: var(--git-muted, #aaa);
   font-size: 10px;
   font-weight: normal;
 }
@@ -301,14 +339,14 @@ form {
 }
 
 input.text { 
-  padding: 3px; 
-  width: 350px; 
+  padding: 3px;
+  width: 350px;
 }
 
-textarea { 
-  width: 350px; 
+textarea {
+  width: 350px;
   height: 150px; 
-  padding: 3px; 
+  padding: 3px;
 }
 textarea.text { height: 60px; }
 textarea.wide { width: 100%; }
@@ -318,23 +356,23 @@ select        { width: 200px; }
 
 input.text, textarea, select {
   margin: 5px 0 10px 0;
-  border: 1px solid #bbb;
+  border: 1px solid var(--git-border, #bbb);
 }
 
 input.text:focus, input.title:focus,
 textarea:focus, select:focus {
-  border: 1px solid #666;
+  border: 1px solid var(--git-border, #666);
 }
 
 .fieldWithErrors { margin: 0; display: block;}
 .fieldWithErrors input, .fieldWithErrors textarea,
 .fieldWithErrors select {
-  border: 1px solid #c30000;
+  border: 1px solid var(--git-border, #c30000);
 }
 
 .errorExplanation {
-  background: #fbe3e4; 
-  border: 1px solid #c30000;
+  background: var(--git-deleted-background, #fbe3e4);
+  border: 1px solid var(--git-border, #c30000);
   width: 400px;
   margin: 0 0 10px 0;
 }
@@ -344,8 +382,8 @@ textarea:focus, select:focus {
   line-height: 120%;
   font-weight: normal;
   padding: 5px;
-  color: #fff;
-  background: #c30000;
+  color: var(--git-background, #fff);
+  background: var(--git-deleted-text, #c30000);
   margin-bottom: 0.2em;
 }
 .errorExplanation p { 
@@ -370,13 +408,13 @@ table.listing td {
 }
 
 table.listing tr.odd {
-  background: #efefef;
+  background: var(--git-surface, #efefef);
 }
 
 table.listing thead th {
   font-weight: bold;
   padding: 3px;
-  border-bottom: 2px solid #222;
+  border-bottom: 2px solid var(--git-border, #222);
 }
 
 table.repository_list tr.mainline {
@@ -384,15 +422,15 @@ table.repository_list tr.mainline {
   padding: 10px;
 }
 table.repository_list tr.mainline td { 
-  border-top: 1px solid #408000;
-  border-bottom: 1px solid #408000;
-  background: #dbf7b3;
+  border-top: 1px solid var(--git-border, #408000);
+  border-bottom: 1px solid var(--git-border, #408000);
+  background: var(--git-added-background, #dbf7b3);
   font-weight: bold;
 }
 table.repository_list td {
   margin: 0;
   padding: 5px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--git-border, #ccc);
 }
 table.repository_list tr.clone td.name {
   background: url("/images/clone_indent.png") 10px 50% no-repeat;
@@ -400,9 +438,9 @@ table.repository_list tr.clone td.name {
 }
 
 .infobox {
-  background: #efefef;
+  background: var(--git-surface, #efefef);
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--git-border, #ccc);
 }
 
 .infobox li {
@@ -417,7 +455,7 @@ pre.commit_message {
 ul.project_list li {
   padding-bottom: 1em;
   margin-bottom: 1em;
-  border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid var(--git-border, #dedede);
 }
 
 ul.bullet_list li {
@@ -433,26 +471,26 @@ ul.bullet_list li {
 .pagination a {
   padding: 1px 5px 2px 5px;
   margin: 2px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--git-border, #ddd);
   text-decoration: none;
 }
 .pagination a:hover, .pagination a:active {
-  border-bottom: 1px solid #333;
-  background: #630;
-  color: #fff;
+  border-bottom: 1px solid var(--git-border, #333);
+  background: var(--git-link, #630);
+  color: var(--git-background, #fff);
 }
 .pagination span.current {
   padding: 1px 5px 2px 5px;
   margin: 2px;
-  border: 1px solid #999;
+  border: 1px solid var(--git-border, #999);
   font-weight: bold;
-  color: #000;
+  color: var(--git-text, #000);
 }
 .pagination span.disabled {
   padding: 1px 5px 2px 5px;
   margin: 2px;
-  border: 1px solid #eee;
-  color: #ddd;
+  border: 1px solid var(--git-border, #eee);
+  color: var(--git-border, #ddd);
 }
 
 .section {
@@ -483,7 +521,7 @@ ul.tag_list li {
 /* "un-ready" objects */
 
 .constructing {
-  color: #999;
+  color: var(--git-muted, #999);
   background: transparent;
 }
 
@@ -491,7 +529,7 @@ div.being_constructed p {
   padding: 0;
   padding-top: 2px;
   margin: 0;
-  color: #333;
+  color: var(--git-text, #333);
 	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 	font-size: 90%;
 }
@@ -500,8 +538,8 @@ div.being_constructed {
   text-align:center;
   margin: 1em;
   padding: 1em;
-  border: 1px solid #A74B42;
-  background: #eee;
+  border: 1px solid var(--git-border, #A74B42);
+  background: var(--git-surface, #eee);
 }
 
 
@@ -509,10 +547,10 @@ div.being_constructed {
 
 div.auto_complete {
   width: 350px;
-  background: #fff;
+  background: var(--git-background, #fff);
 }
 div.auto_complete ul {
-  border:1px solid #888;
+  border:1px solid var(--git-border, #888);
   margin:0;
   padding:0;
   width:100%;
@@ -523,17 +561,17 @@ div.auto_complete ul li {
   padding:3px;
 }
 div.auto_complete ul li.selected { 
-  background-color: #ffb; 
+  background-color: var(--git-modified-background, #ffb);
 }
 div.auto_complete ul strong.highlight { 
-  color: #800; 
+  color: var(--git-deleted-text, #800);
   margin:0;
   padding:0;
 }
 
 span.tag {
-  border: 1px solid #999;
-  background: #dedede;
+  border: 1px solid var(--git-border, #999);
+  background: var(--git-surface-raised, #dedede);
   padding: 0 4px 2px 4px;
 }
 
@@ -541,7 +579,7 @@ table.shortlog tr td, table.tree tr td {
   padding: 2px 5px 4px 5px;
 }
 table.shortlog tr td.link_to_more {
-  border-top: 1px solid #aaa;
+  border-top: 1px solid var(--git-border, #aaa);
   padding: 2px;
 }
 table.shortlog tr td.link_to_more span {
@@ -569,7 +607,7 @@ table.tree tr td.tree a { background-image: url("/images/folder_grey.png"); }
 }
 
 ul.tab_menu {
-  border-bottom: 1px solid #888;
+  border-bottom: 1px solid var(--git-border, #888);
   list-style: none;
   padding: 3px;
   margin-top: 2em;
@@ -577,20 +615,20 @@ ul.tab_menu {
 }
 
 ul.tab_menu li {
-  display:inline; 
+  display:inline;
   margin-right: 1em;
-  border-top: 1px solid #888;
-  border-left: 1px solid #888;
-  border-right: 1px solid #888;
+  border-top: 1px solid var(--git-border, #888);
+  border-left: 1px solid var(--git-border, #888);
+  border-right: 1px solid var(--git-border, #888);
   padding: 5px;
 }
 ul.tab_menu li.selected {
-  border-bottom: 1px solid #fff;
-  color: #666;
+  border-bottom: 1px solid var(--git-border, #fff);
+  color: var(--git-muted, #666);
 }
 
 div.comment {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--git-border, #ccc);
   margin-bottom: 1em;
   width: 63%;
 }
@@ -602,20 +640,20 @@ div.comment p.byline {
 }
 
 .hint {
-  color: #666;
+  color: var(--git-muted, #666);
   font-size: 90%;
 }
 small.hint { font-size: 83%;}
 
 .info_hint {
   font-size: 95%;
-  color: #666;
+  color: var(--git-muted, #666);
   margin-top: 5px;
   margin-bottom: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
-  border-top: 1px dotted #888;
-  border-bottom: 1px dotted #888;
+  border-top: 1px dotted var(--git-border, #888);
+  border-bottom: 1px dotted var(--git-border, #888);
 }
 
 .info_hint pre {
@@ -629,25 +667,25 @@ ul.mode_selector li {
   margin-left: 1em;
 }
 ul.mode_selector li.list_header { font-weight: bold; }
-ul.mode_selector li.selected    { border-bottom: 1px solid #666; }
+ul.mode_selector li.selected    { border-bottom: 1px solid var(--git-border, #666); }
 
 /* Diff rendering */ 
 
 .toggle_diff {
-  
+
 }
 
 table tr .line-numbers {
  text-align: right;
  vertical-align: top;
- background: #eee;
- color: #555;
+ background: var(--git-surface, #eee);
+ color: var(--git-muted, #555);
  font-size: 90%;  
  padding: 2px;
  padding-top: 0;
  width: 35px;
- border-right: 1px solid #ccc;
- border-bottom: 1px solid #ddd;
+ border-right: 1px solid var(--git-border, #ccc);
+ border-bottom: 1px solid var(--git-border, #ddd);
 }
 table tr td.code {
  width: 95%;
@@ -658,7 +696,7 @@ table tr td.code {
  white-space: -pre-wrap;      /* Opera 4-6              */
  white-space: -o-pre-wrap;    /* Opera 7                */
  word-wrap: break-word;       /* Internet Explorer 5.5+ */
- background: #fff;
+ background: var(--git-background, #fff);
  font: 95%/110% "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
 }
 
@@ -675,7 +713,7 @@ table tr td.softwrapped {
 }
 
 table tr td.highlighted {
-  background: #ffc;
+  background: var(--git-modified-background, #ffc);
 }
 
 table.sidebyside {
@@ -688,44 +726,44 @@ table.sidebyside tr td.code {
 }
 
 table.codediff {
-  border: 1px solid #ccc;
+  border: 1px solid var(--git-border, #ccc);
   width: 100%;
   border-collapse: collapse;
   font: 95%/105% "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
 }
 table.codediff .line-num-cut { 
-  background: #ccc; 
-  border-top: 1px dashed #ccc; 
-  border-bottom: 1px dashed #ccc; 
+  background: var(--git-border, #ccc);
+  border-top: 1px dashed var(--git-border, #ccc);
+  border-bottom: 1px dashed var(--git-border, #ccc);
 }
 
-table.codediff thead .line-numbers, table.codediff thead { background: #ddd; }
+table.codediff thead .line-numbers, table.codediff thead { background: var(--git-surface-raised, #ddd); }
 table.codediff td.code { padding-left: 2px; }
-table.codediff .cut-line { 
-  background: #eee; 
-  border-top: 1px dashed #aaa; 
-  border-bottom: 1px dashed #aaa; 
+table.codediff .cut-line {
+  background: var(--git-surface, #eee);
+  border-top: 1px dashed var(--git-border, #aaa);
+  border-bottom: 1px dashed var(--git-border, #aaa);
 }
 table.codediff td.hidden del { display:none; }
-table.codediff td.del { background: #fdd; }
-table.codediff td.ins { background: #dfd; }
-table.codediff td.selected { 
-		border: 5px solid #aaf !important;
+table.codediff td.del { background: var(--git-deleted-background, #fdd); }
+table.codediff td.ins { background: var(--git-added-background, #dfd); }
+table.codediff td.selected {
+		border: 5px solid var(--git-border, #aaf) !important;
 	}
-table.sidebyside tbody.mod td { background: #fe9; }
-table.sidebyside tbody.mod td { background: #fe9; }
-table.sidebyside tbody.mod td ins, table.sidebyside tbody.mod td del{ background: #fd4; }
+table.sidebyside tbody.mod td { background: var(--git-modified-background, #fe9); }
+table.sidebyside tbody.mod td { background: var(--git-modified-background, #fe9); }
+table.sidebyside tbody.mod td ins, table.sidebyside tbody.mod td del{ background: var(--git-modified-emphasis, #fd4); }
 table.codediff td.del del { text-decoration: none; }
 table.codediff td.ins ins { text-decoration: none; }
-table.sidebyside td.del del { background: #fbb; }
-table.sidebyside td.ins ins { background: #afa; }
+table.sidebyside td.del del { background: var(--git-deleted-emphasis, #fbb); }
+table.sidebyside td.ins ins { background: var(--git-added-emphasis, #afa); }
 table.codediff col.lines {
   width: 3em;
 }
 
 table.codediff td.eof {
 	font-style: italic !important;
-	color: #aaa;
+	color: var(--git-muted, #aaa);
 }
 
 table.codediff td.line-num-eof {
@@ -764,7 +802,7 @@ table.codediff td.line-num-eof {
   width: 48%;
   float: left;
   padding-right: 10px;
-  border-right: 1px dotted #dedede;
+  border-right: 1px dotted var(--git-border, #dedede);
 }
 #site #recent_comments .comment { width: 100%;}
 #site #recent_comments .comment .body {
@@ -777,8 +815,8 @@ table.codediff td.line-num-eof {
 }
 
 #system_message {
-  background: #ffc;
-  border-bottom: 1px solid #aaa;
+  background: var(--git-modified-background, #ffc);
+  border-bottom: 1px solid var(--git-border, #aaa);
   margin-bottom: 1em;
 }
 #system_message p {
@@ -794,7 +832,7 @@ table.codediff td.line-num-eof {
 
 #left {
   float:left;
-  width: 48%; 
+  width: 48%;
 }
 
 #right {
@@ -804,7 +842,7 @@ table.codediff td.line-num-eof {
 }
 
 .expand_link {
-  border: 1px solid black;
+  border: 1px solid var(--git-border, black);
   font-family: courier;
   padding: 1px 3px;
   margin-right: 5px;
@@ -828,7 +866,7 @@ td, th, label {
 }
 
 h2 {
-  color: #414a55;
+  color: var(--git-heading, #414a55);
   font-size: 20px;
   font-weight: 500;
   line-height: 1.3;
@@ -840,26 +878,26 @@ h2 {
 }
 
 .infobox {
-  background: #f3f5f7;
-  border: 1px solid #dfe3e8;
+  background: var(--git-surface, #f3f5f7);
+  border: 1px solid var(--git-border, #dfe3e8);
   border-radius: 5px;
   padding: 8px 10px;
-  color: #626c78;
+  color: var(--git-muted, #626c78);
 }
 
 strong {
-  color: #414a55;
+  color: var(--git-heading, #414a55);
   font-weight: 600;
 }
 
 a {
-  color: #4c6785;
+  color: var(--git-link, #4c6785);
 }
 
 .expand_link {
-  border: 1px solid #cbd2da;
+  border: 1px solid var(--git-border-strong, #cbd2da);
   border-radius: 3px;
-  background: #fff;
+  background: var(--git-background, #fff);
   font-family: inherit;
   line-height: 20px;
   width: 20px;
@@ -869,8 +907,8 @@ a {
 }
 
 .expand_link:hover, .expand_link:focus {
-  background: #e8edf2;
-  border-color: #8c9daf;
+  background: var(--git-surface-raised, #e8edf2);
+  border-color: var(--git-border, #8c9daf);
   text-decoration: none;
 }
 
@@ -880,7 +918,7 @@ a {
 
 .log-date {
   float: right;
-  color: #626c78;
+  color: var(--git-muted, #626c78);
   font-size: 12px;
 }
 
@@ -900,62 +938,62 @@ table.codediff, table tr td.code {
 }
 
 table.codediff {
-  border-color: #dfe3e8;
+  border-color: var(--git-border, #dfe3e8);
 }
 
 table.codediff thead,
 table.codediff thead .line-numbers,
 table.codediff .cut-line {
-  background: #edf0f4;
-  color: #626c78;
+  background: var(--git-surface-raised, #edf0f4);
+  color: var(--git-muted, #626c78);
 }
 
 table.codediff td.del {
-  background: #f8eaea;
+  background: var(--git-deleted-background, #f8eaea);
 }
 
 table.codediff td.ins {
-  background: #eaf3ec;
+  background: var(--git-added-background, #eaf3ec);
 }
 
 /* Keep annotation metadata sans-serif even inside the source-code wrapper. */
 table.codediff .line-numbers {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: #f3f5f7;
-  color: #626c78;
-  border-color: #dfe3e8;
+  background: var(--git-surface, #f3f5f7);
+  color: var(--git-muted, #626c78);
+  border-color: var(--git-border, #dfe3e8);
   padding: 3px 7px;
 }
 
 table.codediff td.selected {
   border: 0 !important;
-  box-shadow: inset 3px 0 #8096af;
-  background: #e7edf4;
+  box-shadow: inset 3px 0 var(--git-focus, #8096af);
+  background: var(--git-selected, #e7edf4);
 }
 
-table.sidebyside tbody.mod td { background: #f5f0e3; }
+table.sidebyside tbody.mod td { background: var(--git-modified-background, #f5f0e3); }
 table.sidebyside tbody.mod td ins,
-table.sidebyside tbody.mod td del { background: #ece2c8; }
-table.sidebyside td.del del { background: #efcece; }
-table.sidebyside td.ins ins { background: #cee4d3; }
+table.sidebyside tbody.mod td del { background: var(--git-modified-emphasis, #ece2c8); }
+table.sidebyside td.del del { background: var(--git-deleted-emphasis, #efcece); }
+table.sidebyside td.ins ins { background: var(--git-added-emphasis, #cee4d3); }
 
-table.listing thead th { border-color: #dfe3e8; color: #414a55; }
-table.listing tr.odd { background: #f3f5f7; }
+table.listing thead th { border-color: var(--git-border, #dfe3e8); color: var(--git-heading, #414a55); }
+table.listing tr.odd { background: var(--git-surface, #f3f5f7); }
 input, textarea, select, button { font-family: inherit; }
 input.text, textarea, select {
-  border-color: #cbd2da;
+  border-color: var(--git-border-strong, #cbd2da);
   border-radius: 4px;
-  background: #fff;
-  color: #343b43;
+  background: var(--git-background, #fff);
+  color: var(--git-text, #343b43);
   padding: 4px 6px;
 }
 input:focus, textarea:focus, select:focus, button:focus, a:focus-visible {
-  outline: 2px solid #8096af;
+  outline: 2px solid var(--git-focus, #8096af);
   outline-offset: 2px;
 }
-.flash_message.notice { color: #476650; background: #eaf3ec; border-color: #bfd4c4; }
+.flash_message.notice { color: var(--git-added-text, #476650); background: var(--git-added-background, #eaf3ec); border-color: var(--git-added-border, #bfd4c4); }
 .flash_message.error, .errorExplanation {
-  color: #854d4d; background: #f8eaea; border-color: #dfbebe;
+  color: var(--git-deleted-text, #854d4d); background: var(--git-deleted-background, #f8eaea); border-color: var(--git-deleted-border, #dfbebe);
 }
 
 .annotation-toolbar {
@@ -965,14 +1003,37 @@ input:focus, textarea:focus, select:focus, button:focus, a:focus-visible {
   right: 0;
   z-index: 1;
   padding: 8px 12px 0;
-  background: #f3f5f7;
-  color: #414a55;
-  border-bottom: 1px solid #dfe3e8;
+  background: var(--git-surface, #f3f5f7);
+  color: var(--git-heading, #414a55);
+  border-bottom: 1px solid var(--git-border, #dfe3e8);
 }
-.annotation-toolbar .annotation-commands { float: right; margin-left: 16px; color: #626c78; }
+.annotation-toolbar .annotation-commands { float: right; margin-left: 16px; color: var(--git-muted, #626c78); }
 .annotation-toolbar select { box-sizing: border-box; }
 .annotation-content { margin-top: 90px; }
 @media (max-width: 600px) {
   .annotation-toolbar .annotation-commands { float: none; margin-left: 0; }
   .annotation-content { margin-top: 120px; }
+}
+
+/* Status badges share the same semantic palette as diff and notice colours. */
+.git-status { display: block; padding: 2px; margin: 1px; }
+.git-status-added {
+  background: var(--git-added-background, #eaf3ec);
+  color: var(--git-added-text, #476650);
+}
+.git-status-deleted, .git-status-renamed {
+  background: var(--git-deleted-background, #f8eaea);
+  color: var(--git-deleted-text, #854d4d);
+}
+.git-status-merged, .git-status-updated, .git-status-modified {
+  background: var(--git-modified-background, #f5f0e3);
+  color: var(--git-modified-text, #79643d);
+}
+.git-status-conflict, .git-status-missing, .git-status-typeconflict, .git-status-unknown {
+  background: var(--git-conflict-background, #e8f0f4);
+  color: var(--git-conflict-text, #486776);
+}
+.git-status-ignored, .git-status-external {
+  background: var(--git-ignored-background, #f0ebf4);
+  color: var(--git-ignored-text, #6e587d);
 }

@@ -1,3 +1,22 @@
+Unreleased
+
+  Features:
+    - Added a Worktrees submenu to list, open, create and open, and remove linked checkouts, with support for new branches, existing branches, and detached checkouts.
+    - Worktree removal protects main, current, locked, and missing checkouts and preserves branches. Use Force Remove to discard uncommitted changes and untracked files.
+
+  Improvements:
+    - Refreshed Git Log and shared HTML windows with system fonts, clearer spacing, and muted colours, including diff panels, status badges, and annotation controls.
+    - HTML windows now follow macOS light and dark appearance, including forms, diffs, annotations, and worktree listings, while preserving existing light-mode colours.
+
+  Fixes:
+    - Fixed Git Log loading on Apple Silicon by removing unused dependencies on legacy native helpers.
+    - Fixed JavaScript errors when expanding commit diffs and kept toggle state local to each operation.
+    - Updated Compare Branches to use the supported property-list parser instead of the incompatible legacy native extension.
+    - Fixed annotation file selection and revision navigation, including files selected in the project browser, and added guidance when no single file is available.
+
+  Removed:
+    - Removed SVN commands, the Submodules command, and launchers for Gitk, Git Gui, GitX, and Gitnub, along with their unused settings and handlers.
+
 Release 1.8.1 [2009-07-31]
 
   Features:

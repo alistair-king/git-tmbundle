@@ -81,10 +81,11 @@ module GitWorktrees
       list.drop(1).reject { |entry| entry['locked'] || entry['prunable'] || same_path?(entry['worktree'], root) }
     end
 
-    def remove(path)
+    def remove(path, force: false)
       raise Error, 'The main, current, locked, or missing worktree cannot be removed here.' unless removable.any? { |entry| same_path?(entry['worktree'], path) }
-      # Never force: Git refuses tracked changes and untracked files.
-      run('worktree', 'remove', '--', path)
+      arguments = ['worktree', 'remove']
+      arguments << '--force' if force
+      run(*arguments, '--', path)
     end
   end
 
@@ -176,10 +177,17 @@ module GitWorktrees
     def remove
       entry = choose(@repository.removable)
       return unless entry
-      confirmed = @ui.request_confirmation(:title => 'Remove Worktree?', :prompt => "Remove #{entry['worktree']} and its directory?\n\nSave and close its editor windows and terminals first. This command cannot detect unsaved buffers in other windows. Ignored files in this directory will also be deleted. The branch will be kept; Git will refuse changes or untracked files.", :button1 => 'Remove Worktree')
-      return unless confirmed
-      @repository.remove(entry['worktree'])
-      puts "Removed #{entry['worktree']}. The branch was kept."
+      path = entry['worktree']
+      remove = 'Remove Worktree'
+      force_remove = 'Force Remove'
+      prompt = "Remove #{path} and its directory?\n\n" \
+        "Save and close its editor windows and terminals first. This command cannot detect unsaved buffers in other windows. " \
+        "Both options delete ignored files and keep the branch.\n\n" \
+        "Remove Worktree refuses worktrees with local changes or untracked files. Force Remove permanently deletes those changes and files."
+      action = @ui.alert(:warning, 'Remove Worktree?', prompt, remove, 'Cancel', force_remove)
+      return unless action == remove || action == force_remove
+      @repository.remove(path, force: action == force_remove)
+      puts "Removed #{path}. The branch was kept."
     end
   end
 

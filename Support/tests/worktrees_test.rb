@@ -87,11 +87,14 @@ class GitWorktreesTest < Minitest::Test
     git('worktree', 'lock', '--reason', 'Keep this checkout', path)
     assert_empty @repository.removable
     assert_raises(GitWorktrees::Error) { @repository.remove(path) }
+    assert_raises(GitWorktrees::Error) { @repository.remove(path, force: true) }
     assert_raises(GitWorktrees::Error) { @repository.remove(@root) }
+    assert_raises(GitWorktrees::Error) { @repository.remove(@root, force: true) }
     git('worktree', 'unlock', path)
     linked = GitWorktrees::Repository.new(path, 'git')
     assert_empty linked.removable
     assert_raises(GitWorktrees::Error) { linked.remove(path) }
+    assert_raises(GitWorktrees::Error) { linked.remove(path, force: true) }
   end
 
   def test_inherited_git_overrides_do_not_redirect_commands
@@ -154,10 +157,23 @@ class GitWorktreesTest < Minitest::Test
     path = @repository.create('cancel removal', :new, 'cancel-removal')
     ui = Object.new
     ui.define_singleton_method(:menu) { |_items| 0 }
-    ui.define_singleton_method(:request_confirmation) { |_options| false }
+    ui.define_singleton_method(:alert) { |*_arguments| 'Cancel' }
     GitWorktrees::Commands.new(@repository, ui).remove
     assert File.directory?(path)
     assert_equal 2, @repository.list.size
+  end
+
+  def test_force_remove_discards_local_changes_and_keeps_branch
+    path = @repository.create('force removal', :new, 'force-removal')
+    File.write(File.join(path, 'file.txt'), "modified\n")
+    File.write(File.join(path, 'untracked'), 'discard me')
+    ui = Object.new
+    ui.define_singleton_method(:menu) { |_items| 0 }
+    ui.define_singleton_method(:alert) { |_style, _title, _prompt, *buttons| buttons.last }
+    capture_io { GitWorktrees::Commands.new(@repository, ui).remove }
+    refute File.exist?(path)
+    assert_equal 1, @repository.list.size
+    assert_includes @repository.branches, 'force-removal'
   end
 
   def test_paths_and_revisions_are_passed_as_arguments

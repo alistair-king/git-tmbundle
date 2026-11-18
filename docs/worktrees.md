@@ -9,8 +9,10 @@ Choose **Bundles → Git → Worktrees** for:
   available local branch, or use a branch, tag, or commit for a detached checkout.
   The destination defaults to a sibling of the current checkout.
 - **Remove Worktree…**: remove a linked checkout after confirmation, preserving
-  its branch. Main, current, locked, and missing checkouts are excluded. Git
-  refuses tracked changes and untracked files. Ignored files are removed.
+  its branch. Main, current, locked, and missing checkouts are excluded.
+  **Remove Worktree** refuses local changes and untracked files.
+  **Force Remove** permanently discards local changes and deletes untracked
+  files. Both options delete ignored files.
 
 Run commands in a project window or from a saved file in a Git checkout. Both
 main and linked checkouts are supported. Worktrees created outside TextMate
@@ -22,8 +24,7 @@ TextMate's Bundle Support UI helpers, and a Git version supporting
 Creating a checkout copies committed content, without copying unsaved buffers,
 uncommitted edits, or installing project dependencies. Before removing a
 checkout, save and close its windows and terminals: bundle commands cannot
-inspect unsaved buffers or running processes in other windows. Removal never
-forces Git and never deletes a branch.
+inspect unsaved buffers or running processes in other windows.
 
 ## Testing
 
